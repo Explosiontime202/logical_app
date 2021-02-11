@@ -1,0 +1,78 @@
+{
+  "lastModifiedDate": "FR. 29.01.2021",
+  "levels": [
+    {
+      "name": "Test Level!",
+      "introduction_text": "Well, here is nothing really useful, but the programmer thought that here must stand some letters.",
+      "items": [
+        [
+          "Peter",
+          "Georg",
+          "Hans",
+          "Daniel",
+          "Hubert"
+        ],
+        [
+          "Apfel",
+          "Birne",
+          "Orange",
+          "Ananas",
+          "Banane"
+        ],
+        [
+          "0€",
+          "500€",
+          "1000€",
+          "1500€",
+          "2000€"
+        ],
+        [
+          "Uschi",
+          "Angela",
+          "Daniela",
+          "Sabrina",
+          "Lisa"
+        ]
+      ],
+      "rules": [
+        "Peter liebt Uschi und Äpfel. Er ist aber sehr arm.",
+        "Georg liebt Angela und Birnen. Sein Gehalt sind 500€.",
+        "Hans liebt Daniela und Orangen. Sein Gehalt sind 1000€.",
+        "Daniel liebt Sabrina und Ananas. Sein Gehalt sind 1500€.",
+        "Hubert liebt Lisa und Bananen. Sein Gehalt sind 2000€."
+      ],
+      "solution": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          3,
+          3,
+          3,
+          3
+        ],
+        [
+          4,
+          4,
+          4,
+          4
+        ]
+      ]
+    }
+  ]
+}
