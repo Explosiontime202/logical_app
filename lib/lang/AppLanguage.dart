@@ -11,6 +11,8 @@ class AppLanguage {
   final Map<String, String> notesGui;
   LevelGuiStrings _levelGuiStrings;
   NotesGuiStrings _notesGuiStrings;
+  HomeGuiStrings _homeGuiStrings;
+  SettingsGuiStrings _settingsGuiStrings;
 
   // Todo: Add more language features.
 
@@ -22,7 +24,8 @@ class AppLanguage {
         super() {
     _levelGuiStrings = LevelGuiStrings._(levelGui: levelGui);
     _notesGuiStrings = NotesGuiStrings._(notesGui: notesGui);
-    assert(notesGui != null);
+    _homeGuiStrings = HomeGuiStrings._(homeGui: homeGui);
+    _settingsGuiStrings = SettingsGuiStrings._(settingsGui: settingsGui);
   }
 
   @override
@@ -33,6 +36,10 @@ class AppLanguage {
   LevelGuiStrings get level => _levelGuiStrings;
 
   NotesGuiStrings get notes => _notesGuiStrings;
+
+  HomeGuiStrings get home => _homeGuiStrings;
+
+  SettingsGuiStrings get settings => _settingsGuiStrings;
 
   static Map<String, String> _castGui(dynamic input) {
     return Map.castFrom(input).cast<String, String>();
@@ -67,4 +74,22 @@ class NotesGuiStrings {
   String get title => notesGui["title"];
 
   String get hintText => notesGui["hintText"];
+}
+
+class HomeGuiStrings {
+  final Map<String, String> homeGui;
+
+  HomeGuiStrings._({@required this.homeGui});
+
+  String get title => homeGui["title"];
+}
+
+class SettingsGuiStrings {
+  final Map<String, String> settingsGui;
+
+  SettingsGuiStrings._({@required this.settingsGui});
+
+  String get title => settingsGui["title"];
+
+  String get chooseLanguage => settingsGui["choose_language"];
 }

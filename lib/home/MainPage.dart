@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text(AppSettingStatus.currentLanguage.homeGui["title"]),
+          child: Text(AppSettingStatus.currentLanguage.home.title),
         ),
         actions: [
           PopupMenuButton<String>(

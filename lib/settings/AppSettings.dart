@@ -19,7 +19,7 @@ class _AppSettingsState extends State<AppSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(AppSettingStatus.currentLanguage.settingsGui["title"])),
+        title: Center(child: Text(AppSettingStatus.currentLanguage.settings.title)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -32,14 +32,14 @@ class _AppSettingsState extends State<AppSettings> {
         child: Column(
           children: [
             AppSettingsContainer(child: AppColorModeSwitch()),
-            AppSettingsContainer(child: AppLanguageSwitch(updateSettingsScreen: update)),
+            AppSettingsContainer(child: AppLanguageSwitch(updateSettingsScreen: _update)),
           ],
         ),
       ),
     );
   }
 
-  void update() {
+  void _update() {
     setState(() {});
   }
 }

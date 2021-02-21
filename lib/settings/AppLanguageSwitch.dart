@@ -20,7 +20,7 @@ class _AppLanguageSwitchState extends State<AppLanguageSwitch> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          AppSettingStatus.currentLanguage.settingsGui["choose_language"] + ": ",
+          AppSettingStatus.currentLanguage.settings.chooseLanguage + ": ",
           style: Theme.of(context).textTheme.bodyText1,
         ),
         DropdownButton<AppLanguage>(

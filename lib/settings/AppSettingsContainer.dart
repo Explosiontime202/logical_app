@@ -5,7 +5,7 @@ import 'package:logical_app/constants/AppBorderWidth.dart';
 class AppSettingsContainer extends StatelessWidget {
   final Widget child;
 
-  AppSettingsContainer({this.child}) : super();
+  AppSettingsContainer({@required this.child}) : super();
 
   @override
   Widget build(BuildContext context) {
