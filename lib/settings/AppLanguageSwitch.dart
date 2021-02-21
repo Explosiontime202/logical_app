@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:logical_app/lang/AppLanguage.dart';
 import 'package:logical_app/lang/AppLanguages.dart';

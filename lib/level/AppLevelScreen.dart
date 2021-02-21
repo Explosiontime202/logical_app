@@ -10,6 +10,7 @@ import 'AppLevelRestarter.dart';
 
 class AppLevelScreen extends StatefulWidget {
   final AppLevel level;
+
   AppLevelScreen({@required this.level}) : super();
 
   @override
@@ -19,6 +20,7 @@ class AppLevelScreen extends StatefulWidget {
 class _AppLevelScreenState extends State<AppLevelScreen> {
   AppLevelRestarter _restarter;
   AppLevelExiter _exiter;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,10 @@ class _AppLevelScreenState extends State<AppLevelScreen> {
             onSelected: (String choice) {
               switch (choice) {
                 case "Settings":
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => AppSettings()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => AppSettings(
+                            updateParentPage: _update,
+                          )));
                   break;
               }
             },

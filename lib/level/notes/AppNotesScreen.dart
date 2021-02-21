@@ -1,9 +1,12 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:logical_app/constants/AppColors.dart';
+import 'package:logical_app/lang/AppLanguage.dart';
 import 'package:logical_app/level/AppLevel.dart';
 import 'package:logical_app/level/AppLevelStatus.dart';
 import 'package:logical_app/level/AppRuleList.dart';
 import 'package:logical_app/settings/AppSettings.dart';
+import 'package:logical_app/settings/AppSettingsStatus.dart';
 
 class AppNotesScreen extends StatefulWidget {
   final AppLevel level;
@@ -25,15 +28,20 @@ class _AppNotesScreenState extends State<AppNotesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    NotesGuiStrings gui = AppSettingStatus.currentLanguage.notes;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notes: " + widget.level.name),
+        title: Text(gui.title + ": " + widget.level.name),
         actions: [
           PopupMenuButton<String>(
             onSelected: (String choice) {
               switch (choice) {
                 case "Settings":
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => AppSettings()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => AppSettings(
+                            updateParentPage: _update,
+                          )));
                   break;
               }
             },
@@ -54,8 +62,15 @@ class _AppNotesScreenState extends State<AppNotesScreen> {
           children: [
             AppRuleList(level: widget.level),
             Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Theme.of(context).dividerColor), color: AppColors.guiBackgroundColor),
+                child: ListTile(
+                  title: Text(gui.spaceForNotes),
+                )),
+            Container(
               decoration: BoxDecoration(border: Border.all(color: Theme.of(context).dividerColor)),
               child: TextField(
+                decoration: InputDecoration(hintText: gui.hintText),
                 controller: _controller,
                 keyboardType: TextInputType.multiline,
                 minLines: null,
@@ -69,5 +84,9 @@ class _AppNotesScreenState extends State<AppNotesScreen> {
         ),
       ),
     );
+  }
+
+  void _update() {
+    setState(() {});
   }
 }

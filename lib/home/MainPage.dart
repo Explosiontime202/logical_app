@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
               switch (choice) {
                 case "Settings":
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => AppSettings(updateMainPage: () {
+                      builder: (BuildContext context) => AppSettings(updateParentPage: () {
                             setState(() {});
                           })));
                   break;

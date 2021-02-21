@@ -6,6 +6,7 @@ import 'package:logical_app/level/AppLevelStatus.dart';
 import 'package:logical_app/level/AppLevel.dart';
 import 'package:logical_app/constants/AppColors.dart';
 import 'package:logical_app/level/AppLevelRestarter.dart';
+import 'package:logical_app/settings/AppSettingsStatus.dart';
 
 class AppTestCorrectButton extends StatelessWidget {
   final AppLevel level;
@@ -19,28 +20,32 @@ class AppTestCorrectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        Icons.check,
-        color: AppColors.checkColor,
-        size: Theme.of(context).iconTheme.size,
+    return Container(
+      color: AppColors.guiBackgroundColor,
+      child: IconButton(
+        icon: Icon(
+          Icons.check,
+          color: AppColors.checkColor,
+          size: Theme.of(context).iconTheme.size,
+        ),
+        onPressed: () {
+          AppLevelStatus levelStatus = AppLevelStatus.of(level);
+          bool test = levelStatus.testCorrect();
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Test result"),
+                content: Text(test
+                    ? "You have successfully solved this leevl. Great job!"
+                    : "That's not completly correct. Please try further to find the correct solution."),
+                actions: _generateActionButtons(context, test),
+              );
+            },
+          );
+        },
+        tooltip: AppSettingStatus.currentLanguage.level.correctButtonTooltip,
       ),
-      onPressed: () {
-        AppLevelStatus levelStatus = AppLevelStatus.of(level);
-        bool test = levelStatus.testCorrect();
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Test result"),
-              content: Text(test
-                  ? "You have successfully solved this leevl. Great job!"
-                  : "That's not completly correct. Please try further to find the correct solution."),
-              actions: _generateActionButtons(context, test),
-            );
-          },
-        );
-      },
     );
   }
 

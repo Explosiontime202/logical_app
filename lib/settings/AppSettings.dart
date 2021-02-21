@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logical_app/constants/AppColors.dart';
 import 'package:logical_app/settings/AppSettingsStatus.dart';
 
 import 'AppColorModeSwitch.dart';
@@ -7,9 +6,9 @@ import 'AppLanguageSwitch.dart';
 import 'AppSettingsContainer.dart';
 
 class AppSettings extends StatefulWidget {
-  final Function updateMainPage;
+  final Function updateParentPage;
 
-  AppSettings({@required this.updateMainPage}) : super();
+  AppSettings({@required this.updateParentPage}) : super();
 
   @override
   _AppSettingsState createState() => _AppSettingsState();
@@ -25,7 +24,7 @@ class _AppSettingsState extends State<AppSettings> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
-            widget.updateMainPage();
+            widget.updateParentPage();
           },
         ),
       ),

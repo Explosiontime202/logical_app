@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logical_app/level/AppLevel.dart';
 import 'package:logical_app/level/AppLevelRestarter.dart';
+import 'package:logical_app/settings/AppSettingsStatus.dart';
 
 class AppRestartButton extends StatelessWidget {
   final AppLevel level;
   final AppLevelRestarter restarter;
+
   AppRestartButton({@required this.restarter, @required this.level}) : super();
 
   @override
@@ -34,6 +36,7 @@ class AppRestartButton extends StatelessWidget {
           },
         );
       },
+      tooltip: AppSettingStatus.currentLanguage.level.restartButtonToolTip,
     );
   }
 }

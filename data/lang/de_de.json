@@ -8,6 +8,19 @@
     "settings": {
       "title": "Einstellungen",
       "choose_language": "Wähle eine andere Sprache"
+    },
+    "level": {
+      "correct_button": "Überprüfen Sie ihre Lösung.",
+      "undo_button": "Den letzten Zug zurücknehmen.",
+      "notes_button": "Ihre Notizen - bearbeiten, ansehen",
+      "introduction_button": "Der Einführungstext dieses Levels.",
+      "restart_button": "Starte das Level neu.",
+      "rule_list_info_text": "Die Informationen:"
+    },
+    "notes": {
+      "title": "Notizen",
+      "space_for_notes": "Platz für Notizen:",
+      "hintText": "Notizen..."
     }
   }
 }

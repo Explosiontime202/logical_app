@@ -8,6 +8,19 @@
     "settings": {
       "title": "Settings",
       "choose_language": "Choose a new language"
+    },
+    "level": {
+      "correct_button": "Check your solution.",
+      "undo_button": "Undo last move.",
+      "notes_button": "See and edit your notes.",
+      "introduction_button": "Here's the story of this level.",
+      "restart_button": "Restart the level.",
+      "rule_list_info_text": "The information:"
+    },
+    "notes": {
+      "title": "Notes",
+      "space_for_notes": "Space for notes:",
+      "hintText": "Notes..."
     }
   }
 }

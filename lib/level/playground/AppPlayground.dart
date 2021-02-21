@@ -1,15 +1,17 @@
 import 'dart:core';
+
 import 'package:flutter/material.dart';
+
 import 'package:logical_app/level/AppHighlighter.dart';
 import 'package:logical_app/level/AppLevelExiter.dart';
 import 'package:logical_app/level/playground/AppPlaygroundNames.dart';
 import 'package:logical_app/level/AppLevel.dart';
 import 'package:logical_app/level/AppLevelRestarter.dart';
 import 'package:logical_app/level/playground/buttons/AppNotesButton.dart';
+import 'package:logical_app/level/playground/buttons/AppPlaygroundInformationButton.dart';
 import 'package:logical_app/level/playground/buttons/AppTestCorrectButton.dart';
 import 'package:logical_app/level/playground/buttons/AppUndoButton.dart';
 
-import 'AppPlaygroundInformation.dart';
 import 'AppPlaygroundSqaure.dart';
 import 'AppPlaygroundTappingField.dart';
 
@@ -37,7 +39,7 @@ class _AppPlaygroundState extends State<AppPlayground> {
         physics: NeverScrollableScrollPhysics(),
         children: [
           AppPlaygroundSquare(
-            child: AppPlaygroundInformation(level: widget.level),
+            child: AppPlaygroundInformationButton(level: widget.level),
           ),
           AppPlaygroundSquare(child: AppPlaygroundItems(level: widget.level, rot: true, index: 1)),
           AppPlaygroundSquare(child: AppPlaygroundItems(level: widget.level, rot: true, index: 2)),

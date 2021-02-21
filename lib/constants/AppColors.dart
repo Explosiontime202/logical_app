@@ -31,26 +31,30 @@ class AppColors {
 
   static const Color kreis = Colors.blue;
 
+  static Color get guiBackgroundColor => _getColor("guiBackground");
+
   static Color _getColor(String name) {
     return _colorMode == AppColorMode.DARK ? _darkColors[name] : _lightColors[name];
   }
 
   static Map<String, Color> _darkColors = {
-    //"background": Colors.grey[900],
     "background": Colors.blueGrey[900],
     "title_background": Colors.grey[800],
     "text": Colors.grey[300],
     "accent": Colors.blue,
     "divider": Colors.grey[300],
-    "icon": Colors.grey[300]
+    "icon": Colors.grey[300],
+    "guiBackground": Colors.blueGrey[800],
   };
+
   static Map<String, Color> _lightColors = {
     "background": Colors.grey[200],
     "title_background": Colors.grey[300],
     "text": Colors.grey[800],
     "accent": Colors.blue,
     "divider": Colors.grey[800],
-    "icon": Colors.grey[800]
+    "icon": Colors.grey[800],
+    "guiBackground": Colors.grey[300],
   };
 
   static ThemeData get darkTheme {
@@ -98,6 +102,10 @@ class AppColors {
         accentIconTheme: IconThemeData(color: Colors.blue),
         dividerColor: dividerColor,
         canvasColor: background,
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(color: text),
+          contentPadding: EdgeInsets.all(5),
+        ),
       );
 
   static Function _updateTheme;

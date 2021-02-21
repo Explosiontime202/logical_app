@@ -1,6 +1,8 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:logical_app/constants/AppBorderWidth.dart';
+import 'package:logical_app/constants/AppColors.dart';
+import 'package:logical_app/settings/AppSettingsStatus.dart';
 
 import 'AppLevel.dart';
 import 'AppLevelStatus.dart';
@@ -18,17 +20,35 @@ class AppRuleList extends StatefulWidget {
 class _AppRuleListState extends State<AppRuleList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView(
       shrinkWrap: true,
       physics: widget.scrollable ? AlwaysScrollableScrollPhysics() : NeverScrollableScrollPhysics(),
-      itemCount: widget.level.rules.length,
-      itemBuilder: (BuildContext context, int index) {
-        return new AppRuleTile(
-          level: widget.level,
-          index: index,
-        );
-      },
+      children: _getChildren(),
     );
+  }
+
+  List<Widget> _getChildren() {
+    List<Widget> list = List.generate(
+      widget.level.rules.length,
+      (index) => AppRuleTile(
+        level: widget.level,
+        index: index,
+      ),
+    );
+
+    // Add info bar
+    list.insert(
+      0,
+      Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).dividerColor, width: AppBorderWidth.thick),
+            color: AppColors.guiBackgroundColor),
+        child: ListTile(
+          title: Text(AppSettingStatus.currentLanguage.level.ruleListInfoText),
+        ),
+      ),
+    );
+    return list;
   }
 }
 
