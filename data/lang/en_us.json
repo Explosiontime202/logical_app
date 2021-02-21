@@ -1,4 +1,13 @@
 {
-  "name" : "English",
-  "short": "EN"
+  "name": "English",
+  "short": "EN",
+  "gui": {
+    "home": {
+      "title": "Main Menu"
+    },
+    "settings": {
+      "title": "Settings",
+      "choose_language": "Choose a new language"
+    }
+  }
 }

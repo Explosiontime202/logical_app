@@ -1,4 +1,13 @@
 {
-  "name" : "Deutsch",
-  "short": "DE"
+  "name": "Deutsch",
+  "short": "DE",
+  "gui": {
+    "home": {
+      "title": "Hauptmenü"
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "choose_language": "Wähle eine andere Sprache"
+    }
+  }
 }

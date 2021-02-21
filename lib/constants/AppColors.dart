@@ -97,6 +97,7 @@ class AppColors {
         primaryIconTheme: IconThemeData(color: icon),
         accentIconTheme: IconThemeData(color: Colors.blue),
         dividerColor: dividerColor,
+        canvasColor: background,
       );
 
   static Function _updateTheme;
