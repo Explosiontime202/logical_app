@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'package:flutter/cupertino.dart' as cupertino;
+import 'package:logical_app/util/Pair.dart';
 import 'package:logical_app/util/Stack.dart';
 
 import 'AppLevel.dart';
@@ -11,11 +12,18 @@ class AppLevelStatus {
   List<List<int>> _status;
   List<bool> _ruleStatus;
   Stack<List<List<int>>> _statusStack;
+  List<List<bool>> _highlightedBlocks;
+  Function updateLevelScreen;
 
   AppLevelStatus({@cupertino.required this.level}) : super() {
     _levelStati.add(this);
     _initStatus();
     _statusStack = Stack(maxCapacity: 30);
+    _highlightedBlocks = List(6);
+    for (int index = 0; index < _highlightedBlocks.length; index++) {
+      _highlightedBlocks[index] = List(25);
+      _highlightedBlocks[index].fillRange(0, 25, false);
+    }
   }
 
   static AppLevelStatus of(AppLevel level) {
@@ -34,6 +42,8 @@ class AppLevelStatus {
       }
     }
     field[rowIndex] = (field[rowIndex] + 1) % 3;
+
+    removeHighlighting();
   }
 
   List<List<int>> _copyStatus() {
@@ -50,6 +60,7 @@ class AppLevelStatus {
 
   void restart() {
     _initStatus();
+    removeHighlighting();
   }
 
   void _initStatus() {
@@ -63,21 +74,19 @@ class AppLevelStatus {
     _ruleStatus.fillRange(0, _ruleStatus.length, false);
   }
 
-  bool testCorrect() {
+  Pair<bool, List<Map<String, int>>> testCorrect() {
+    removeHighlighting();
     if (!level.hasCorrectSolution) level.generateCorrectSolution();
     List<List<int>> correctSolution = level.correctSolution;
-    return _checkListEquality(_status, correctSolution);
-  }
-
-  bool _checkListEquality(List<List<int>> l1, List<List<int>> l2) {
-    if (l1.length != l2.length) return false;
-    for (int i = 0; i < l1.length; i++) {
-      if (l1[i].length != l2[i].length) return false;
-      for (int k = 0; k < l1[i].length; k++) {
-        if (l1[i][k] != l2[i][k]) return false;
+    List<Map<String, int>> falseBlocks = List();
+    for (int i = 0; i < correctSolution.length; i++) {
+      for (int k = 0; k < correctSolution[i].length; k++) {
+        if (correctSolution[i][k] != _status[i][k]) falseBlocks.add({"fieldIndex": i, "rowIndex": k});
       }
     }
-    return true;
+    bool test = falseBlocks.isEmpty;
+    falseBlocks.removeWhere((element) => getStatus(element["fieldIndex"], element["rowIndex"]) == 0);
+    return Pair(test, falseBlocks);
   }
 
   cupertino.TextEditingController get notesController {
@@ -93,5 +102,20 @@ class AppLevelStatus {
 
   void undoMove() {
     if (!_statusStack.isEmpty()) _status = _statusStack.pop();
+    removeHighlighting();
+  }
+
+  void highlightBlocks(List<Map<String, int>> blocks) {
+    for (Map<String, int> block in blocks) _highlightedBlocks[block["fieldIndex"]][block["rowIndex"]] = true;
+    updateLevelScreen();
+  }
+
+  void removeHighlighting() {
+    for (List<bool> list in _highlightedBlocks) for (int index = 0; index < list.length; index++) list[index] = false;
+    updateLevelScreen();
+  }
+
+  bool getHighlightedStatus(int fieldIndex, int rowIndex) {
+    return _highlightedBlocks[fieldIndex][rowIndex];
   }
 }

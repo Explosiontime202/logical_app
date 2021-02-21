@@ -1,22 +1,19 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:logical_app/level/AppHighlighter.dart';
 import 'package:logical_app/level/AppLevelExiter.dart';
 import 'package:logical_app/level/AppLevelStatus.dart';
 import 'package:logical_app/level/AppLevel.dart';
 import 'package:logical_app/constants/AppColors.dart';
 import 'package:logical_app/level/AppLevelRestarter.dart';
 import 'package:logical_app/settings/AppSettingsStatus.dart';
+import 'package:logical_app/util/Pair.dart';
 
 class AppTestCorrectButton extends StatelessWidget {
   final AppLevel level;
   final AppLevelRestarter restarter;
   final AppLevelExiter levelExiter;
-  final AppHighlighter highlighter;
 
-  AppTestCorrectButton(
-      {@required this.level, @required this.restarter, @required this.levelExiter, @required this.highlighter})
-      : super();
+  AppTestCorrectButton({@required this.level, @required this.restarter, @required this.levelExiter}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +27,16 @@ class AppTestCorrectButton extends StatelessWidget {
         ),
         onPressed: () {
           AppLevelStatus levelStatus = AppLevelStatus.of(level);
-          bool test = levelStatus.testCorrect();
+          Pair<bool, List<Map<String, int>>> testResult = levelStatus.testCorrect();
           showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text("Test result"),
-                content: Text(test
+                content: Text(testResult.s
                     ? "You have successfully solved this leevl. Great job!"
                     : "That's not completly correct. Please try further to find the correct solution."),
-                actions: _generateActionButtons(context, test),
+                actions: _generateActionButtons(context, testResult.s, testResult.t),
               );
             },
           );
@@ -49,7 +46,7 @@ class AppTestCorrectButton extends StatelessWidget {
     );
   }
 
-  List<Widget> _generateActionButtons(BuildContext context, bool test) {
+  List<Widget> _generateActionButtons(BuildContext context, bool test, List<Map<String, int>> falseBlocks) {
     if (test) {
       return <Widget>[
         FlatButton(
@@ -77,7 +74,7 @@ class AppTestCorrectButton extends StatelessWidget {
         ),
         FlatButton(
           onPressed: () {
-            highlighter.highlightFalseBlocks();
+            AppLevelStatus.of(level).highlightBlocks(falseBlocks);
             Navigator.of(context).pop();
           },
           child: Text("Continue"),

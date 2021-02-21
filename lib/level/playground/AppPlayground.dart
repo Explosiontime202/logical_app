@@ -2,7 +2,6 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 
-import 'package:logical_app/level/AppHighlighter.dart';
 import 'package:logical_app/level/AppLevelExiter.dart';
 import 'package:logical_app/level/playground/AppPlaygroundNames.dart';
 import 'package:logical_app/level/AppLevel.dart';
@@ -68,7 +67,6 @@ class _AppPlaygroundState extends State<AppPlayground> {
               level: widget.level,
               restarter: widget.restarter,
               levelExiter: widget.levelExiter,
-              highlighter: AppHighlighter(),
             ),
           ),
         ],

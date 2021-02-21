@@ -30,9 +30,15 @@ class _AppPlaygroundTappingFieldBoxState extends State<AppPlaygroundTappingField
   Widget build(BuildContext context) {
     AppLevelStatus levelStatus = AppLevelStatus.of(widget.level);
     int status = levelStatus.getStatus(widget.fieldIndex, widget.rowIndex);
+    bool highlighted = levelStatus.getHighlightedStatus(widget.fieldIndex, widget.rowIndex);
+    Color backgroundColor = highlighted ? AppColors.highlightedBlock : Theme.of(context).scaffoldBackgroundColor;
+    assert(backgroundColor != null, "?");
     Map<String, dynamic> cos = _cosmetics[status];
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: Theme.of(context).dividerColor,width: AppBorderWidth.thin)),
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).dividerColor, width: AppBorderWidth.thin),
+        color: backgroundColor,
+      ),
       child: FlatButton(
         padding: EdgeInsets.zero,
         onPressed: () {

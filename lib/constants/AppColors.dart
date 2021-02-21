@@ -33,6 +33,8 @@ class AppColors {
 
   static Color get guiBackgroundColor => _getColor("guiBackground");
 
+  static const Color highlightedBlock = Colors.orange;
+
   static Color _getColor(String name) {
     return _colorMode == AppColorMode.DARK ? _darkColors[name] : _lightColors[name];
   }

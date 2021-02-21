@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logical_app/level/AppLevelExiter.dart';
+import 'package:logical_app/level/AppLevelStatus.dart';
 import 'package:logical_app/level/playground/AppPlayground.dart';
 import 'package:logical_app/level/playground/buttons/AppRestartButton.dart';
 import 'package:logical_app/settings/AppSettings.dart';
@@ -21,6 +22,11 @@ class _AppLevelScreenState extends State<AppLevelScreen> {
   AppLevelRestarter _restarter;
   AppLevelExiter _exiter;
 
+  @override
+  void initState(){
+    super.initState();
+    AppLevelStatus.of(widget.level).updateLevelScreen = _update;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

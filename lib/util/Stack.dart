@@ -7,6 +7,7 @@ class Stack<E> {
   int _stackPointer;
 
   Stack({@required this.maxCapacity}) : super() {
+    assert (maxCapacity > 0, "maxCapacity must be positive!");
     _elements = List<E>(maxCapacity);
     _stackPointer = -1;
   }
