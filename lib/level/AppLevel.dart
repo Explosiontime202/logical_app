@@ -67,12 +67,7 @@ class AppLevel {
   List<List<int>> get correctSolution => _correctSolution;
 
   void generateCorrectSolution() {
-    _correctSolution = List<List<int>>(6);
-    for (int i = 0; i < 6; i++) {
-      List<int> field = List<int>(25);
-      field.fillRange(0, field.length, 1);
-      _correctSolution[i] = field;
-    }
+    _correctSolution = List.generate(6, (index) => List.filled(25, 1));
 
     for (List<int> sol in solution) {
       for (int i in [0, 3, 2]) {

@@ -18,7 +18,7 @@ class AppLanguages {
   static Future<void> init() async {
     Map<String, dynamic> common = await _loadAndDecode("common.json");
     List<String> langFilesStrings = List.castFrom<dynamic, String>(common["lang_files"]);
-    List<Map<String, dynamic>> langFiles = List<Map<String, dynamic>>();
+    List<Map<String, dynamic>> langFiles = [];
     for (String file in langFilesStrings) langFiles.add(await _loadAndDecode(file));
     for (Map<String, dynamic> file in langFiles) dev.log(file.toString());
     _languages = await Stream.fromIterable(langFiles)

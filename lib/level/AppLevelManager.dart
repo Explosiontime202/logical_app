@@ -11,9 +11,8 @@ class AppLevelManager {
   static Future<void> init(Function update) async {
     String inputString = await rootBundle.loadString("data/LevelData.json");
     Map<String, dynamic> input = jsonDecode(inputString);
-    _levels = new List();
     List<Map<String, dynamic>> levelsData = List.castFrom<dynamic, Map<String, dynamic>>(input["levels"]);
-    for (Map<String, dynamic> level in levelsData) _levels.add(AppLevel.of(level));
+    _levels = List.generate(levelsData.length, (index) => AppLevel.of(levelsData[index]));
     update();
   }
 

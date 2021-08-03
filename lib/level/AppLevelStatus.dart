@@ -1,29 +1,25 @@
 import 'dart:core';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:logical_app/util/Pair.dart';
-import 'package:logical_app/util/Stack.dart';
+import 'package:logical_app/util/ArrayStack.dart';
 
 import 'AppLevel.dart';
 
 class AppLevelStatus {
-  static List<AppLevelStatus> _levelStati = List<AppLevelStatus>();
+  static List<AppLevelStatus> _levelStati = [];
   final AppLevel level;
   cupertino.TextEditingController _notesController;
   List<List<int>> _status;
   List<bool> _ruleStatus;
-  Stack<List<List<int>>> _statusStack;
+  ArrayStack<List<List<int>>> _statusStack;
   List<List<bool>> _highlightedBlocks;
   Function updateLevelScreen;
 
   AppLevelStatus({@cupertino.required this.level}) : super() {
     _levelStati.add(this);
     _initStatus();
-    _statusStack = Stack(maxCapacity: 30);
-    _highlightedBlocks = List(6);
-    for (int index = 0; index < _highlightedBlocks.length; index++) {
-      _highlightedBlocks[index] = List(25);
-      _highlightedBlocks[index].fillRange(0, 25, false);
-    }
+    _statusStack = ArrayStack();
+    _highlightedBlocks = List.generate(6, (index) => List.filled(25, false));
   }
 
   static AppLevelStatus of(AppLevel level) {
@@ -46,15 +42,8 @@ class AppLevelStatus {
     removeHighlighting();
   }
 
-  List<List<int>> _copyStatus() {
-    List<List<int>> copy = List(_status.length);
-    for (int i = 0; i < copy.length; i++) {
-      List<int> field = List(_status[i].length);
-      for (int j = 0; j < field.length; j++) field[j] = _status[i][j];
-      copy[i] = field;
-    }
-    return copy;
-  }
+  List<List<int>> _copyStatus() => List.generate(
+      _status.length, (index) => List.generate(_status[index].length, (index2) => _status[index][index2]));
 
   int getStatus(int fieldIndex, int rowIndex) => _status[fieldIndex][rowIndex];
 
@@ -64,14 +53,8 @@ class AppLevelStatus {
   }
 
   void _initStatus() {
-    _status = List(6);
-    for (int i = 0; i < _status.length; i++) {
-      List<int> field = List(25);
-      field.fillRange(0, 25, 0);
-      _status[i] = field;
-    }
-    _ruleStatus = List(level.rules.length);
-    _ruleStatus.fillRange(0, _ruleStatus.length, false);
+    _status = List.generate(6, (index) => List.filled(25, 0));
+    _ruleStatus = List.filled(level.rules.length, false);
   }
 
   Pair<bool, List<Map<String, int>>> testCorrect() {
@@ -101,7 +84,7 @@ class AppLevelStatus {
   void invertRuleStatus(int index) => _ruleStatus[index] = !_ruleStatus[index];
 
   void undoMove() {
-    if (!_statusStack.isEmpty()) _status = _statusStack.pop();
+    if (!_statusStack.isEmpty) _status = _statusStack.pop();
     removeHighlighting();
   }
 
