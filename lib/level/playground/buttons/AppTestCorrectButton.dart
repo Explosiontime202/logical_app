@@ -49,14 +49,13 @@ class AppTestCorrectButton extends StatelessWidget {
   List<Widget> _generateActionButtons(BuildContext context, bool test, List<Map<String, int>> falseBlocks) {
     if (test) {
       return <Widget>[
-        FlatButton(
-          onPressed: () {
-            restarter.restart();
-            Navigator.of(context).pop();
-          },
-          child: Text("Replay"),
-        ),
-        FlatButton(
+        TextButton(
+            onPressed: () {
+              restarter.restart();
+              Navigator.of(context).pop();
+            },
+            child: Text("Replay")),
+        TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               levelExiter.exitLevel(context);
@@ -65,14 +64,14 @@ class AppTestCorrectButton extends StatelessWidget {
       ];
     } else {
       return [
-        FlatButton(
+        TextButton(
           onPressed: () {
             restarter.restart();
             Navigator.of(context).pop();
           },
           child: Text("Replay"),
         ),
-        FlatButton(
+        TextButton(
           onPressed: () {
             AppLevelStatus.of(level).highlightBlocks(falseBlocks);
             Navigator.of(context).pop();
