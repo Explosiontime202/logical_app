@@ -11,9 +11,15 @@ class _AppLevelListState extends State<AppLevelList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: AppLevelManager.size,
+      itemCount: AppLevelManager.size * 2 - 1,
       itemBuilder: (BuildContext context, int index) {
-        return AppLevelManager.getLevel(index).toListTile(context);
+        if (index % 2 == 1) {
+          return Divider(
+            indent: MediaQuery.of(context).size.width * 0.1,
+            endIndent: MediaQuery.of(context).size.width * 0.1,
+          );
+        }
+        return AppLevelManager.getLevel(index ~/ 2).toListTile(context);
       },
     );
   }

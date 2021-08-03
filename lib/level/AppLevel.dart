@@ -53,7 +53,7 @@ class AppLevel {
 
   ListTile toListTile(BuildContext context) {
     return ListTile(
-      title: Text(name),
+      title: Text(name, textAlign: TextAlign.center),
       onTap: () {
         AppLevelStatus(level: this);
         Navigator.of(context)
