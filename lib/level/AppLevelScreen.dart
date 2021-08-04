@@ -12,15 +12,15 @@ import 'AppLevelRestarter.dart';
 class AppLevelScreen extends StatefulWidget {
   final AppLevel level;
 
-  AppLevelScreen({@required this.level}) : super();
+  AppLevelScreen({required this.level}) : super();
 
   @override
   _AppLevelScreenState createState() => _AppLevelScreenState();
 }
 
 class _AppLevelScreenState extends State<AppLevelScreen> {
-  AppLevelRestarter _restarter;
-  AppLevelExiter _exiter;
+  AppLevelRestarter? _restarter;
+  AppLevelExiter? _exiter;
 
   @override
   void initState(){
@@ -82,11 +82,11 @@ class _AppLevelScreenState extends State<AppLevelScreen> {
     if (_restarter == null) {
       _restarter = AppLevelRestarter(level: widget.level, updateLevelScreen: _update);
     }
-    return _restarter;
+    return _restarter!;
   }
 
   AppLevelExiter _getExiter() {
     if (_exiter == null) _exiter = AppLevelExiter(level: widget.level);
-    return _exiter;
+    return _exiter!;
   }
 }

@@ -9,7 +9,7 @@ class AppRestartButton extends StatelessWidget {
   final AppLevel level;
   final AppLevelRestarter restarter;
 
-  AppRestartButton({@required this.restarter, @required this.level}) : super();
+  AppRestartButton({required this.restarter, required this.level}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class AppRestartButton extends StatelessWidget {
               content: Text(
                   "Are you sure that you want to restart the level? This will delete all your progress in this level so far."),
               actions: [
-                FlatButton(onPressed: () => Navigator.of(context).pop(), child: Text("No")),
-                FlatButton(
+                TextButton(onPressed: () => Navigator.of(context).pop(), child: Text("No")),
+                TextButton(
                     onPressed: () {
                       restarter.restart();
                       Navigator.of(context).pop();

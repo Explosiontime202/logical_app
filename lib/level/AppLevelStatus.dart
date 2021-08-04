@@ -9,18 +9,20 @@ import 'AppLevel.dart';
 class AppLevelStatus {
   static List<AppLevelStatus> _levelStati = [];
   final AppLevel level;
-  cupertino.TextEditingController _notesController;
+  cupertino.TextEditingController? _notesController;
   List<List<int>> _status;
   List<bool> _ruleStatus;
   ArrayStack<List<List<int>>> _statusStack;
   List<List<bool>> _highlightedBlocks;
-  Function updateLevelScreen;
+  late Function updateLevelScreen;
 
-  AppLevelStatus({@cupertino.required this.level}) : super() {
+  AppLevelStatus({required this.level})
+      : _statusStack = ArrayStack(),
+        _highlightedBlocks = List.generate(6, (index) => List.filled(25, false)),
+        _status = List.generate(6, (index) => List.filled(25, 0)),
+        _ruleStatus = List.filled(level.rules.length, false),
+        super() {
     _levelStati.add(this);
-    _initStatus();
-    _statusStack = ArrayStack();
-    _highlightedBlocks = List.generate(6, (index) => List.filled(25, false));
   }
 
   static AppLevelStatus of(AppLevel level) => _levelStati.firstWhere((element) => element.level == level);
@@ -50,13 +52,10 @@ class AppLevelStatus {
   int getStatus(int fieldIndex, int rowIndex) => _status[fieldIndex][rowIndex];
 
   void restart() {
-    _initStatus();
-    removeHighlighting();
-  }
-
-  void _initStatus() {
+    // reset the status
     _status = List.generate(6, (index) => List.filled(25, 0));
     _ruleStatus = List.filled(level.rules.length, false);
+    removeHighlighting();
   }
 
   Pair<bool, List<Map<String, int>>> testCorrect() {
@@ -79,7 +78,7 @@ class AppLevelStatus {
     bool test = falseBlocks.isEmpty;
 
     // for highlighting purposes remove the field with no 'X' or 'O'
-    falseBlocks.removeWhere((element) => getStatus(element["fieldIndex"], element["rowIndex"]) == 0);
+    falseBlocks.removeWhere((element) => getStatus(element["fieldIndex"]!, element["rowIndex"]!) == 0);
 
     return Pair(test, falseBlocks);
   }
@@ -88,7 +87,7 @@ class AppLevelStatus {
     if (_notesController == null) {
       _notesController = cupertino.TextEditingController();
     }
-    return _notesController;
+    return _notesController!;
   }
 
   bool getRuleStatus(int index) => _ruleStatus[index];
@@ -102,7 +101,7 @@ class AppLevelStatus {
 
   void highlightBlocks(List<Map<String, int>> blocks) {
     for (Map<String, int> block in blocks) {
-      _highlightedBlocks[block["fieldIndex"]][block["rowIndex"]] = true;
+      _highlightedBlocks[block["fieldIndex"]!][block["rowIndex"]!] = true;
     }
     updateLevelScreen();
   }

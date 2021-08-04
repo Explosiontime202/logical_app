@@ -21,7 +21,7 @@ class AppPlayground extends StatefulWidget {
   final Function updateLevelScreen;
 
   AppPlayground(
-      {@required this.level, @required this.restarter, @required this.levelExiter, @required this.updateLevelScreen})
+      {required this.level, required this.restarter, required this.levelExiter, required this.updateLevelScreen})
       : super();
 
   @override

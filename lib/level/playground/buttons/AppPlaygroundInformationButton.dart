@@ -7,7 +7,7 @@ import 'package:logical_app/settings/AppSettingsStatus.dart';
 class AppPlaygroundInformationButton extends StatelessWidget {
   final AppLevel level;
 
-  AppPlaygroundInformationButton({@required this.level}) : super();
+  AppPlaygroundInformationButton({required this.level}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class AppPlaygroundInformationButton extends StatelessWidget {
                 title: Text(level.name),
                 content: Text(level.introductionText),
                 actions: [
-                  FlatButton(
+                  TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text("Close"),
                   ),

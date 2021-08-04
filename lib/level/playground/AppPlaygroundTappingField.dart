@@ -8,7 +8,7 @@ class AppPlaygroundTappingField extends StatefulWidget {
   final AppLevel level;
   final int fieldIndex;
 
-  AppPlaygroundTappingField({@required this.level, @required this.fieldIndex}) : super();
+  AppPlaygroundTappingField({required this.level, required this.fieldIndex}) : super();
 
   @override
   _AppPlaygroundTappingFieldState createState() => _AppPlaygroundTappingFieldState();

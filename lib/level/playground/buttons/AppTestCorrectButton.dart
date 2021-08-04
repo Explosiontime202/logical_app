@@ -13,7 +13,7 @@ class AppTestCorrectButton extends StatelessWidget {
   final AppLevelRestarter restarter;
   final AppLevelExiter levelExiter;
 
-  AppTestCorrectButton({@required this.level, @required this.restarter, @required this.levelExiter}) : super();
+  AppTestCorrectButton({required this.level, required this.restarter, required this.levelExiter}) : super();
 
   @override
   Widget build(BuildContext context) {

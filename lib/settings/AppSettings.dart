@@ -8,7 +8,7 @@ import 'AppSettingsContainer.dart';
 class AppSettings extends StatefulWidget {
   final Function updateParentPage;
 
-  AppSettings({@required this.updateParentPage}) : super();
+  AppSettings({required this.updateParentPage}) : super();
 
   @override
   _AppSettingsState createState() => _AppSettingsState();

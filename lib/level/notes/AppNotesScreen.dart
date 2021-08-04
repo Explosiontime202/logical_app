@@ -1,6 +1,5 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:logical_app/constants/AppColors.dart';
 import 'package:logical_app/lang/AppLanguage.dart';
 import 'package:logical_app/level/AppLevel.dart';
 import 'package:logical_app/level/AppLevelStatus.dart';
@@ -11,14 +10,14 @@ import 'package:logical_app/settings/AppSettingsStatus.dart';
 class AppNotesScreen extends StatefulWidget {
   final AppLevel level;
 
-  AppNotesScreen({@required this.level}) : super();
+  AppNotesScreen({required this.level}) : super();
 
   @override
   _AppNotesScreenState createState() => _AppNotesScreenState();
 }
 
 class _AppNotesScreenState extends State<AppNotesScreen> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
 
   @override
   void initState() {
@@ -61,24 +60,19 @@ class _AppNotesScreenState extends State<AppNotesScreen> {
           shrinkWrap: true,
           children: [
             AppRuleList(level: widget.level),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).dividerColor), color: AppColors.guiBackgroundColor),
-                child: ListTile(
-                  title: Text(gui.spaceForNotes),
-                )),
-            Container(
-              decoration: BoxDecoration(border: Border.all(color: Theme.of(context).dividerColor)),
-              child: TextField(
-                decoration: InputDecoration(hintText: gui.hintText),
-                controller: _controller,
-                keyboardType: TextInputType.multiline,
-                minLines: null,
-                maxLines: null,
-                autocorrect: false,
-                onTap: () => FocusScope.of(context).unfocus(),
-                scrollPhysics: NeverScrollableScrollPhysics(),
-              ),
+            Divider(),
+            ListTile(
+              title: Text(gui.spaceForNotes),
+            ),
+            TextField(
+              decoration: InputDecoration(hintText: gui.hintText),
+              controller: _controller,
+              keyboardType: TextInputType.multiline,
+              minLines: null,
+              maxLines: null,
+              autocorrect: false,
+              onTap: () => FocusScope.of(context).unfocus(),
+              scrollPhysics: NeverScrollableScrollPhysics(),
             ),
           ],
         ),
@@ -88,5 +82,19 @@ class _AppNotesScreenState extends State<AppNotesScreen> {
 
   void _update() {
     setState(() {});
+  }
+}
+
+class AppNotesTile extends StatefulWidget {
+  const AppNotesTile({Key? key}) : super(key: key);
+
+  @override
+  _AppNotesTileState createState() => _AppNotesTileState();
+}
+
+class _AppNotesTileState extends State<AppNotesTile> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

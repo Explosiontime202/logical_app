@@ -12,16 +12,16 @@ class AppLevel {
   final List<String> rules;
   final List<List<String>> items;
   bool _correctSolutionGenerated = false;
-  List<List<int>> _correctSolution;
+  late List<List<int>> _correctSolution;
 
   AppLevel._(this.name, this.introductionText, this.solution, this.rules, this.items);
 
   static AppLevel of(Map<String, dynamic> data) {
-    String name;
-    String introductionText;
-    List<List<int>> solution;
-    List<String> rules;
-    List<List<String>> items;
+    String? name;
+    String? introductionText;
+    List<List<int>>? solution;
+    List<String>? rules;
+    List<List<String>>? items;
     try {
       name = data["name"];
       introductionText = data["introduction_text"];
@@ -37,7 +37,7 @@ class AppLevel {
       assert(true, "rules, items or solution are no Lists! (or Lists of Lists)!!");
     }
     assert(name != null && introductionText != null, "name or introduction_text doesn't exist!");
-    return AppLevel._(name, introductionText, solution, rules, items);
+    return AppLevel._(name!, introductionText!, solution!, rules!, items!);
   }
 
   @override

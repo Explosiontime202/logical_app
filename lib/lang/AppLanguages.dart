@@ -11,7 +11,7 @@ import 'AppLanguage.dart';
 class AppLanguages {
   AppLanguages._() : super();
   static const String _PREFIX = "data/lang/";
-  static List<AppLanguage> _languages;
+  static late List<AppLanguage> _languages;
   static bool isLoaded = false;
   static Function update = () {};
 
@@ -25,6 +25,7 @@ class AppLanguages {
         .map((lang) => AppLanguage(full: lang["name"], short: lang["short"], gui: lang["gui"]))
         .toList();
     dev.log(_languages.toString());
+
     AppSettingStatus.currentLanguage = _languages[0];
     isLoaded = true;
     update();

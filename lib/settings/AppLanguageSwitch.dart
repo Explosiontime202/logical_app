@@ -7,7 +7,7 @@ import 'package:logical_app/settings/AppSettingsStatus.dart';
 class AppLanguageSwitch extends StatefulWidget {
   final Function updateSettingsScreen;
 
-  AppLanguageSwitch({@required this.updateSettingsScreen}) : super();
+  AppLanguageSwitch({required this.updateSettingsScreen}) : super();
 
   @override
   _AppLanguageSwitchState createState() => _AppLanguageSwitchState();
@@ -25,8 +25,10 @@ class _AppLanguageSwitchState extends State<AppLanguageSwitch> {
         ),
         DropdownButton<AppLanguage>(
           onChanged: (lang) {
-            AppSettingStatus.currentLanguage = lang;
-            widget.updateSettingsScreen();
+            if (lang != null) {
+              AppSettingStatus.currentLanguage = lang;
+              widget.updateSettingsScreen();
+            }
           },
           items: AppLanguages.languages
               .map(

@@ -7,7 +7,7 @@ class AppPlaygroundItems extends StatefulWidget {
   final bool rot;
   final int index;
 
-  AppPlaygroundItems({@required this.level, @required this.rot, @required this.index}) : super();
+  AppPlaygroundItems({required this.level, required this.rot, required this.index}) : super();
 
   @override
   _AppPlaygroundItemsState createState() => _AppPlaygroundItemsState();

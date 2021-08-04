@@ -9,7 +9,7 @@ class AppColors {
       return ThemeMode.light;
   }
 
-  static AppColorMode _colorMode;
+  static late AppColorMode _colorMode;
 
   static Color get titleBackground => _getColor("title_background");
 
@@ -36,27 +36,27 @@ class AppColors {
   static const Color highlightedBlock = Colors.orange;
 
   static Color _getColor(String name) {
-    return _colorMode == AppColorMode.DARK ? _darkColors[name] : _lightColors[name];
+    return _colorMode == AppColorMode.DARK ? _darkColors[name]! : _lightColors[name]!;
   }
 
   static Map<String, Color> _darkColors = {
-    "background": Colors.blueGrey[900],
-    "title_background": Colors.grey[800],
-    "text": Colors.grey[300],
+    "background": Colors.blueGrey.shade900,
+    "title_background": Colors.grey.shade800,
+    "text": Colors.grey.shade300,
     "accent": Colors.blue,
-    "divider": Colors.grey[300],
-    "icon": Colors.grey[300],
-    "guiBackground": Colors.blueGrey[800],
+    "divider": Colors.grey.shade300,
+    "icon": Colors.grey.shade300,
+    "guiBackground": Colors.blueGrey.shade800,
   };
 
   static Map<String, Color> _lightColors = {
-    "background": Colors.grey[200],
-    "title_background": Colors.grey[300],
-    "text": Colors.grey[800],
+    "background": Colors.grey.shade200,
+    "title_background": Colors.grey.shade300,
+    "text": Colors.grey.shade800,
     "accent": Colors.blue,
-    "divider": Colors.grey[800],
-    "icon": Colors.grey[800],
-    "guiBackground": Colors.grey[300],
+    "divider": Colors.grey.shade800,
+    "icon": Colors.grey.shade800,
+    "guiBackground": Colors.grey.shade300,
   };
 
   static ThemeData get darkTheme {
@@ -110,7 +110,7 @@ class AppColors {
         ),
       );
 
-  static Function _updateTheme;
+  static late Function _updateTheme;
 
   static setUpdateThemeFunction(Function updateTheme) => _updateTheme = updateTheme;
 

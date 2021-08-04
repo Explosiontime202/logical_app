@@ -9,7 +9,7 @@ class AppNotesButton extends StatelessWidget {
   final AppLevel level;
   final Function updateLevelScreen;
 
-  AppNotesButton({@required this.level, @required this.updateLevelScreen}) : super();
+  AppNotesButton({required this.level, required this.updateLevelScreen}) : super();
 
   @override
   Widget build(BuildContext context) {

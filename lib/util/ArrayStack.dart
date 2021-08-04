@@ -1,14 +1,9 @@
 import 'dart:core';
-import 'package:meta/meta.dart';
 
 import 'Stack.dart';
 
 class ArrayStack<E> implements Stack<E> {
-  List<E> _elements;
-
-  ArrayStack() {
-    _elements = [];
-  }
+  final List<E> _elements = [];
 
   @override
   bool get isEmpty => _elements.isEmpty;

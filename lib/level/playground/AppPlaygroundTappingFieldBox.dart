@@ -12,7 +12,7 @@ class AppPlaygroundTappingFieldBox extends StatefulWidget {
   final void Function(int) update;
 
   AppPlaygroundTappingFieldBox(
-      {@required this.level, @required this.fieldIndex, @required this.rowIndex, @required this.update})
+      {required this.level, required this.fieldIndex, required this.rowIndex, required this.update})
       : super();
 
   @override
@@ -32,7 +32,6 @@ class _AppPlaygroundTappingFieldBoxState extends State<AppPlaygroundTappingField
     int status = levelStatus.getStatus(widget.fieldIndex, widget.rowIndex);
     bool highlighted = levelStatus.getHighlightedStatus(widget.fieldIndex, widget.rowIndex);
     Color backgroundColor = highlighted ? AppColors.highlightedBlock : Theme.of(context).scaffoldBackgroundColor;
-    assert(backgroundColor != null, "?");
     Map<String, dynamic> cos = _cosmetics[status];
     return Container(
       decoration: BoxDecoration(

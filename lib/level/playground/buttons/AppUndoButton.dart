@@ -9,7 +9,7 @@ class AppUndoButton extends StatelessWidget {
   final AppLevel level;
   final Function updatePlayground;
 
-  AppUndoButton({@required this.level, @required this.updatePlayground}) : super();
+  AppUndoButton({required this.level, required this.updatePlayground}) : super();
 
   @override
   Widget build(BuildContext context) {

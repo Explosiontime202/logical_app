@@ -6,7 +6,7 @@ import 'package:logical_app/level/AppLevel.dart';
 class AppLevelExiter {
   final AppLevel level;
 
-  AppLevelExiter({@required this.level}) : super();
+  AppLevelExiter({required this.level}) : super();
 
   void exitLevel(BuildContext context) {
     Navigator.of(context).pop();
